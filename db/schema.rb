@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 20161214211605) do
     t.string "name"
   end
 
+  create_table "ingredients_steps", force: :cascade do |t|
+    t.integer "quantity"
+    t.string  "measurement_type"
+    t.integer "ingredient_id"
+    t.integer "step_id"
+  end
+
   create_table "recipe_tags", force: :cascade do |t|
     t.integer "recipe_id"
     t.integer "tag_id"
@@ -28,13 +35,6 @@ ActiveRecord::Schema.define(version: 20161214211605) do
     t.string  "title"
     t.integer "cook_time"
     t.integer "serving_size"
-  end
-
-  create_table "step_ingredients", force: :cascade do |t|
-    t.integer "quantity"
-    t.string  "measurement_type"
-    t.integer "ingredient_id"
-    t.integer "step_id"
   end
 
   create_table "steps", force: :cascade do |t|

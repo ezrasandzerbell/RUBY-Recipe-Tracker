@@ -3,7 +3,7 @@ class Tables < ActiveRecord::Migration[5.0]
     create_table(:ingredients) do |t|
       t.column(:name, :string)
     end
-    create_table(:step_ingredients) do |t|
+    create_table(:ingredients_steps) do |t|
       t.column(:quantity, :integer)
       t.column(:measurement_type, :string)
       t.column(:ingredient_id, :integer)
