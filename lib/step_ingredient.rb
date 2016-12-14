@@ -1,4 +1,4 @@
-class Step_ingredient < ActiveRecord::Base
+class StepIngredient < ActiveRecord::Base
   has_many(:ingredients)
   belongs_to(:step)
 end
