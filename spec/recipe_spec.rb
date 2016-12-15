@@ -15,12 +15,10 @@ describe(Recipe) do
     it('tests for integration with ingredients step') do
       recipe = Recipe.create({:title => "Filet Mignon", :cook_time => 45, :serving_size => 5})
       recipe_id = recipe.id
-      step = Step.create({:description => "Preheat oven at 325 degrees", :recipe_id => recipe_id})
-      step_id = step.id
       ingredient = Ingredient.create({:name => "sugar"})
       ingredient_id = ingredient.id
-      step_ingredient_test = IngredientsStep.create({:step_id => step_id, :ingredient_id => ingredient_id, :quantity => 4, :measurement_type => "oz"})
-      expect(recipe.steps).to(eq([step]))
+      measurement_test = Measurement.create({:recipe_id => recipe_id, :ingredient_id => ingredient_id, :quantity => 4, :measurement_type => "oz"})
+      expect(recipe.ingredients).to(eq([ingredient]))
     end
   end
 end
