@@ -3,15 +3,18 @@
 <br><br>
 
 <div class="row">
-  <div class="col-md-7">
+  <div class="col-md-3">
     <% if @measurements != []%>
-      <h2>Recipe Ingredients:</h2>
+      <h2>Recipe Ingredients</h2>
+      <h4><a href="/recipes/<%=@recipe.id%>/ingredients">Add new ingredients</a></h4>
         <% @measurements.each do |measurement| %>
           <h4><%= measurement.name %>: <%= measurement.quantity %> <%= measurement.measurement_type %></h4>
         <% end %>
+    <% else %>
+    <h4><a href="/recipes/<%=@recipe.id%>/ingredients">Add new ingredients</a></h4>
     <% end %>
-
-
+  </div>
+  <div class="col-md-4">
     <% if @steps != []%>
     <h2>Recipe Steps:</h2>
       <ul>
@@ -19,6 +22,8 @@
           <li><%= step.description %></li>
         <% end %>
       </ul>
+    <% else %>
+      <h4>This recipe currently has no steps</h4>
     <% end %>
   </div>
   <div class="col-md-5">

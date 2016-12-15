@@ -7,6 +7,8 @@
     <% @measurements.each do |measurement| %>
       <h4><%= measurement.name %>: <%= measurement.quantity %> <%= measurement.measurement_type %></h4>
     <% end %>
+<% else%>
+  <h4>No Measurements to Display</h4>
 <% end %>
 </center>
 
