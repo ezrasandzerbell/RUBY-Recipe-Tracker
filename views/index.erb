@@ -1,1 +1,8 @@
-hello world
+<h1> Hell's Kitchen </h1>
+
+<% @recipes.each do |recipe| %>
+  <a href="/recipes/<%=recipe.id%>"><%= recipe.title %></a>
+  <br>
+<%end%>
+<br><br>
+<a class="btn btn-primary" href="/recipe">Create new recipe</a>
