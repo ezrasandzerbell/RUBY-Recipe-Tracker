@@ -94,3 +94,23 @@ get('/recipes/:id/ingredients') do
   @measurements = @recipe.measurements
   erb(:ingredients)
 end
+
+get('/recipes/:id/edit') do
+  @recipe = Recipe.find(params.fetch("id"))
+  erb(:recipe_edit)
+end
+
+post('/recipe/:id') do
+  title = params.fetch("recipe_title")
+  recipe = Recipe.find(params.fetch("id"))
+  recipe.update({:title => title})
+  @recipes = Recipe.all
+  erb(:index)
+end
+
+delete('/') do
+  recipe = Recipe.find(params.fetch("recipe_id"))
+  recipe.delete()
+  @recipes = Recipe.all
+  erb(:index)
+end

@@ -97,7 +97,29 @@ describe('navigation') do
       fill_in('step_description', :with => "chop beets")
       click_button("Add")
       click_link("Add new ingredients")
-      expect(page).to have_content("Creation Station")
+      expect(page).to have_content("All Ingredients")
+    end
+  end
+  describe('navigates to home page from', {:type => :feature}) do
+    it('deletes recipe item') do
+      visit('/')
+      click_link("Create new recipe")
+      fill_in("recipe_title", :with => "fried brainz")
+      fill_in("cook_time", :with => "30")
+      fill_in("serving_size", :with => "2")
+      click_button("Submit")
+      fill_in("ingredient_name", :with => "ketchup")
+      click_button("Create")
+      select('ketchup', :from => 'ingredients')
+      fill_in("quantity", :with => "1")
+      select('teaspoon', :from => 'measurement_type')
+      click_button("Add measurement")
+      click_link("Finished Adding Ingredients: Begin Creating Recipe Steps")
+      fill_in('step_description', :with => "chop beets")
+      click_button("Add")
+      click_link("Submit recipe")
+      click_button("Delete Recipe")
+      expect(page).to have_content("Your Recipes")
     end
   end
 end

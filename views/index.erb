@@ -1,8 +1,27 @@
-<h1> Hell's Kitchen </h1>
+<div class="panel panel-default">
+  <div class="panel panel-heading">
+    <h2><center>Your Recipes</center></h2>
+  </div>
+  <% @recipes.each do |recipe| %>
+  <div class="panel panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        <a href="/recipes/<%=recipe.id%>/steps"><%= recipe.title %></a>
+      </div>
+      <div class="col-md-4">
+        <a href="/recipes/<%= recipe.id()%>/edit"><button type="button" class="btn btn-primary">Update Name</button></a>
+      </div>
+      <div class="col-md-4">
+        <form action="/" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input type="hidden" name="recipe_id" value="<%= recipe.id %>">
+          <button type="submit" class="btn btn-danger">Delete Recipe</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <%end%>
+</div>
 
-<% @recipes.each do |recipe| %>
-  <a href="/recipes/<%=recipe.id%>/steps"><%= recipe.title %></a>
-  <br>
-<%end%>
 <br><br>
 <a class="btn btn-primary" href="/recipe">Create new recipe</a>
