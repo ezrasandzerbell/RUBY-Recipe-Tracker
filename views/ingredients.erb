@@ -1,0 +1,70 @@
+<center><h2> <%= @recipe.title %> </h2>
+<h3> Serves <%= @recipe.serving_size %> people and requires <%= @recipe.cook_time %> minutes to cook. </h3>
+<br><br>
+<h2>Creation Station</h2></center>
+
+<% if @measurements != []%>
+  <ul>
+    <% @measurements.each do |measurement| %>
+      <li><%= measurement.name %>: <%= measurement.quantity %> <%= measurement.measurement_type %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="row">
+  <div class="col-md-6">
+    <form action="/recipes/<%= @recipe.id %>/ingredient" method="post">
+    <h3>Ingredients for <%= @recipe.title %></h3>
+    <% if @ingredients != []%>
+      <ul>
+        <% @ingredients.each do |ingredient| %>
+          <li><%= ingredient.name %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <label for="ingredient_name">Add new ingredient to list</label>
+    <input type="text" class="form-control" name="ingredient_name" placeholder="new ingredient">
+    <button type="submit" class="btn btn-info">Create</button>
+    </form>
+  </div>
+  <div class="col-md-6">
+
+    <h3>Measure </h3>
+
+    <h4>Select the first ingredient you want for this step of the recipe:
+    <form action="/recipes/<%= @recipe.id %>/ingredients" method="post">
+
+      <% if @ingredients != []%>
+        <select class="form-control" name="ingredients">
+          <% @ingredients.each do |ingredient| %>
+          <option><%= ingredient.name %></option>
+        <% end %>
+        </select>
+      <% end %>
+      <br>
+      <label for="quantity">Enter quantity of ingredient:</label><br>
+      <input type="text" class="form-control" name="quantity">
+      <br>
+      <select class="form-control" name="measurement_type">
+        <option>grams</option>
+        <option>oz</option>
+        <option>teaspoons</option>
+        <option>tablespoons</option>
+        <option>fl. oz</option>
+        <option>cups</option>
+      </select>
+      <br><br>
+
+      <button type="submit" class="btn btn-info">Add measurement</button>
+    </form>
+  </div>
+</div>
+
+
+<br>
+
+<% if @steps != []%>
+  <% @steps.each do |step| %>
+  <h3><%= step.description %></h3>
+  <% end %>
+<% end %>
