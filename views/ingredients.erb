@@ -1,7 +1,7 @@
 <center><h2> <%= @recipe.title %> </h2>
 <h3> Serves <%= @recipe.serving_size %> people and requires <%= @recipe.cook_time %> minutes to cook. </h3>
 <br><br>
-<h2>Creation Station</h2></center>
+<h2><h3>Ingredients for <%= @recipe.title %></h3></h2></center>
 <center>
 <% if @measurements != []%>
     <% @measurements.each do |measurement| %>
@@ -15,7 +15,7 @@
 <div class="row">
   <div class="col-md-6">
     <form action="/recipes/<%= @recipe.id %>/ingredient" method="post">
-    <h3>Ingredients for <%= @recipe.title %></h3>
+    <h3>All Ingredients</h3>
     <% if @ingredients != []%>
       <ul>
         <% @ingredients.each do |ingredient| %>
