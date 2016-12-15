@@ -20,5 +20,14 @@ describe(Ingredient) do
       measurement_test = Measurement.create({:recipe_id => recipe_id, :ingredient_id => ingredient_id, :quantity => 4, :measurement_type => "oz"})
       expect(ingredient.recipes).to(eq([recipe]))
     end
+    it('tests for whether each letter in a ingredient string is capitalized') do
+      ingredient1 = Ingredient.create({:name => "sugar"})
+      expect(ingredient.name).to(eq('SUGAR'))
+    end
+    it('tests to make sure that each name added to an ingredient listing is unique') do
+      ingredient1 = Ingredient.create({:name => "sugar"})
+      ingredient2 = Ingredient.create({:name => "sugar"})
+      expect(Ingredient.all).to(eq([ingredient1]))
+    end
   end
 end
