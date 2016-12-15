@@ -1,7 +1,7 @@
 <center><h2> <%= @recipe.title %> </h2>
 <h3> Serves <%= @recipe.serving_size %> people and requires <%= @recipe.cook_time %> minutes to cook. </h3>
 <br><br>
-<h2><h3>Ingredients for <%= @recipe.title %></h3></h2></center>
+<h2><h3>Ingredient Measurements for <%= @recipe.title %></h3></h2></center>
 <center>
 <% if @measurements != []%>
     <% @measurements.each do |measurement| %>
@@ -13,22 +13,16 @@
 </center>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-3">
     <form action="/recipes/<%= @recipe.id %>/ingredient" method="post">
-    <h3>All Ingredients</h3>
-    <% if @ingredients != []%>
-      <ul>
-        <% @ingredients.each do |ingredient| %>
-          <li><%= ingredient.name %></li>
-        <% end %>
-      </ul>
-    <% end %>
-    <label for="ingredient_name">Add new ingredient to list</label>
+    <h3>Create New Ingredient</h3>
+    <label for="ingredient_name"></label>
     <input type="text" class="form-control" name="ingredient_name" placeholder="new ingredient">
+    <br>
     <button type="submit" class="btn btn-info">Create</button>
     </form>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-9">
 
     <h3>Measure </h3>
 

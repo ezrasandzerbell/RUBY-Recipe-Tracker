@@ -19,6 +19,7 @@ post('/recipes') do
   @recipe = recipe
   @steps = recipe.steps
   @measurements = recipe.measurements
+  @recipe_ingredients = @recipe.ingredients
   erb(:ingredients)
 end
 
@@ -28,6 +29,7 @@ post('/recipes/:id') do
   @recipe = recipe
   @steps = recipe.steps
   @measurements = recipe.measurements
+  @recipe_ingredients = @recipe.ingredients
   erb(:ingredients)
 end
 
@@ -37,6 +39,7 @@ get('/recipes/:id') do
   @recipe = recipe
   @steps = recipe.steps
   @measurements = recipe.measurements
+  @recipe_ingredients = @recipe.ingredients
   erb(:ingredients)
 end
 
@@ -44,6 +47,7 @@ post('/recipes/:id/ingredient') do
   ingredient = Ingredient.create({:name => params.fetch("ingredient_name")})
   @recipe = Recipe.find(params.fetch("id"))
   @ingredients = Ingredient.all
+  @recipe_ingredients = @recipe.ingredients
   @steps = @recipe.steps
   @measurements = @recipe.measurements
   erb(:ingredients)
@@ -65,6 +69,7 @@ post('/recipes/:id/ingredients') do
 
   @recipe = Recipe.find(params.fetch("id"))
   @ingredients = Ingredient.all
+  @recipe_ingredients = @recipe.ingredients
   @steps = @recipe.steps
   @measurements = @recipe.measurements
   erb(:ingredients)
@@ -74,6 +79,7 @@ get('/recipes/:id/steps') do
   @recipe = Recipe.find(params.fetch("id"))
   @ingredients = Ingredient.all
   @steps = @recipe.steps
+  @recipe_ingredients = @recipe.ingredients
   @measurements = @recipe.measurements
   erb(:steps)
 end
@@ -83,6 +89,7 @@ post('/recipes/:id/steps') do
   @recipe = Recipe.find(params.fetch("id"))
   @ingredients = Ingredient.all
   @steps = @recipe.steps
+  @recipe_ingredients = @recipe.ingredients
   @measurements = @recipe.measurements
   erb(:steps)
 end
@@ -91,6 +98,7 @@ get('/recipes/:id/ingredients') do
   @recipe = Recipe.find(params.fetch("id"))
   @ingredients = Ingredient.all
   @steps = @recipe.steps
+  @recipe_ingredients = @recipe.ingredients
   @measurements = @recipe.measurements
   erb(:ingredients)
 end
