@@ -2,14 +2,13 @@
 <h3> Serves <%= @recipe.serving_size %> people and requires <%= @recipe.cook_time %> minutes to cook. </h3>
 <br><br>
 <h2>Creation Station</h2></center>
-
+<center>
 <% if @measurements != []%>
-  <ul>
     <% @measurements.each do |measurement| %>
-      <li><%= measurement.name %>: <%= measurement.quantity %> <%= measurement.measurement_type %></li>
+      <h4><%= measurement.name %>: <%= measurement.quantity %> <%= measurement.measurement_type %></h4>
     <% end %>
-  </ul>
 <% end %>
+</center>
 
 <div class="row">
   <div class="col-md-6">
@@ -63,8 +62,5 @@
 
 <br>
 
-<% if @steps != []%>
-  <% @steps.each do |step| %>
-  <h3><%= step.description %></h3>
-  <% end %>
-<% end %>
+
+<center><a class="btn btn-danger btn-lg" href="/recipes/<%=@recipe.id%>/steps">Finished Adding Ingredients: Begin Creating Recipe Steps</a></center>

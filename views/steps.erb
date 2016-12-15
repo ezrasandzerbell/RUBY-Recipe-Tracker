@@ -1,25 +1,28 @@
+<center><h2> <%= @recipe.title %> </h2>
+<h3> Serves <%= @recipe.serving_size %> people and requires <%= @recipe.cook_time %> minutes to cook. </h3></center>
+<br><br>
+
 <div class="row">
   <div class="col-md-7">
     <% if @measurements != []%>
-    <h2>Recipe Ingredients:</h2>
-      <ul>
+      <h2>Recipe Ingredients:</h2>
         <% @measurements.each do |measurement| %>
-          <li><%= measurement.name %></li>
+          <h4><%= measurement.name %>: <%= measurement.quantity %> <%= measurement.measurement_type %></h4>
         <% end %>
-      </ul>
     <% end %>
+
 
     <% if @steps != []%>
     <h2>Recipe Steps:</h2>
       <ul>
         <% @steps.each do |step| %>
-          <li><%= step.name %></li>
+          <li><%= step.description %></li>
         <% end %>
       </ul>
     <% end %>
   </div>
   <div class="col-md-5">
-    <form class="" action="index.html" method="post">
+    <form class="form-group" action="/recipes/<%=@recipe.id%>/steps" method="post">
       <h2>Create New Recipe Step</h2>
       <input type="text" class="form-control" name="step_description" placeholder="describe step here">
       <button type="submit" class="btn btn-info">Add</button>
@@ -27,4 +30,4 @@
   </div>
 </div>
 
-<a href"/"><button type="button" name="button">Submit recipe</button></a>
+<center><a href="/"><button type="button" class="btn btn-lg btn-success">Submit recipe</button></a></center>

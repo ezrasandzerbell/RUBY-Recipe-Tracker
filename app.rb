@@ -71,7 +71,23 @@ post('/recipes/:id/ingredients') do
   erb(:ingredients)
 end
 
+get('/recipes/:id/steps') do
+  @ingredients = Ingredient.all
+  @measurements = Measurement.all
+  @recipe = Recipe.find(params.fetch("id"))
+  @steps = Step.all
+  erb(:steps)
+end
+
 post('/recipes/:id/steps') do
   step = Step.create({:description => params.fetch("step_description"), :recipe_id => params.fetch("id")})
-  step_id = step.id
+  @ingredients = Ingredient.all
+  @measurements = Measurement.all
+  @recipe = Recipe.find(params.fetch("id"))
+  @steps = Step.all
+  erb(:steps)
+end
+
+get('/recipes/:id/ingredients') do
+  erb(:ingredients)
 end
