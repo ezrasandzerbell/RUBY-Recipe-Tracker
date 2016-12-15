@@ -39,9 +39,8 @@ end
 
 post('/recipes/:id/ingredient') do
   ingredient = Ingredient.create({:name => params.fetch("ingredient_name")})
-  recipe = Recipe.find(params.fetch("id"))
+  @recipe = Recipe.find(params.fetch("id"))
   @ingredients = Ingredient.all
-  @recipe = recipe
   @steps = Step.all
   erb(:recipe_steps)
 end

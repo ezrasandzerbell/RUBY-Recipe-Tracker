@@ -1,17 +1,25 @@
-<h2> <%= @recipe.title %> </h2>
+<center><h2> <%= @recipe.title %> </h2>
 <h3> Serves <%= @recipe.serving_size %> people and requires <%= @recipe.cook_time %> minutes to cook. </h3>
+<br><br>
+<h2>Creation Station</h2></center>
 
-<% if @steps != []%>
-  <% @steps.each do |step| %>
-  <h3><%= step.description %></h3>
-  <% end %>
+<form action="/recipes/<%= @recipe.id %>/ingredient" method="post">
+<h4>Ingredients for <%= @recipe.title %></h4>
+<% if @ingredients != []%>
+  <ul>
+    <% @ingredients.each do |ingredient| %>
+      <li><%= ingredient.name %></li>
+    <% end %>
+  </ul>
 <% end %>
-
-<center><h2>Creation Station</h2></center>
+<label for="ingredient_name">Add new ingredient to list</label>
+<input type="text" class="form-control" name="ingredient_name" placeholder="new ingredient">
+<button type="submit" class="btn btn-info">Create</button>
+</form>
 
 <h3>Measure </h3>
 
-<h4>Begin by measuring the ingredients you want for this step of the recipe:
+<h4>Select the first ingredient you want for this step of the recipe:
 <form action="/recipes/<%= @recipe.id %>/step" method="post">
 
   <% if @ingredients != []%>
@@ -23,7 +31,7 @@
   <% end %>
   <br>
   <label for="quantity">Enter quantity of ingredient:</label><br>
-  <input type="text" class="form-control" name="quantity" placeholder="">
+  <input type="text" class="form-control" name="quantity">
   <br>
   <select class="form-control" name="measurement_type">
     <option>grams</option>
@@ -35,8 +43,8 @@
   </select>
   <br><br>
 
-    <input type="text" class="form-control" name="step_description" placeholder="describe step here">
-    
+  <input type="text" class="form-control" name="step_description" placeholder="describe step here">
+
   <button type="submit" class="btn btn-info">Add measurement</button>
 </form>
 <br>
@@ -44,3 +52,9 @@
 
   <button type="submit" class="btn btn-info">Add</button>
 </form>
+
+<% if @steps != []%>
+  <% @steps.each do |step| %>
+  <h3><%= step.description %></h3>
+  <% end %>
+<% end %>
