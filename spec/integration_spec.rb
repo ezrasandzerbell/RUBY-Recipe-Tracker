@@ -20,7 +20,7 @@ describe('navigation') do
       fill_in("cook_time", :with => "30")
       fill_in("serving_size", :with => "2")
       click_button("Submit")
-      expect(page).to have_content("fried brainz")
+      expect(page).to have_content("Fried Brainz")
     end
   end
   describe('creates new ingredients', {:type => :feature}) do
@@ -33,7 +33,7 @@ describe('navigation') do
       click_button("Submit")
       fill_in("ingredient_name", :with => "oil")
       click_button("Create")
-      expect(page).to have_content("oil")
+      expect(page).to have_content("OIL")
     end
   end
 end
@@ -48,11 +48,11 @@ describe('navigation') do
       click_button("Submit")
       fill_in("ingredient_name", :with => "garlic extract")
       click_button("Create")
-      select('garlic extract', :from => 'ingredients')
+      select('GARLIC EXTRACT', :from => 'ingredients')
       fill_in("quantity", :with => "1")
       select('teaspoon', :from => 'measurement_type')
       click_button("Add measurement")
-      expect(page).to have_content("garlic extract: 1 teaspoon")
+      expect(page).to have_content("GARLIC EXTRACT: 1 teaspoon")
     end
   end
 end
@@ -67,7 +67,7 @@ describe('navigation') do
       click_button("Submit")
       fill_in("ingredient_name", :with => "salt")
       click_button("Create")
-      select('salt', :from => 'ingredients')
+      select('SALT', :from => 'ingredients')
       fill_in("quantity", :with => "1")
       select('teaspoon', :from => 'measurement_type')
       click_button("Add measurement")

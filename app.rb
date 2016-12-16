@@ -20,7 +20,11 @@ post('/recipes') do
   @steps = recipe.steps
   @measurements = recipe.measurements
   @recipe_ingredients = @recipe.ingredients
-  erb(:ingredients)
+  if @recipe.save()
+    erb(:ingredients)
+  else
+    erb(:errors_recipe)
+  end
 end
 
 post('/recipes/:id') do
